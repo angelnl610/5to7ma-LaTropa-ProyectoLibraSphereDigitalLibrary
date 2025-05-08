@@ -7,13 +7,26 @@ namespace EjemploEditorial
        private int anioFundacion;
        private string sitioWeb;
 
+       public Editorial(string nombre , string paisOrigen, int anioFundacion, string sitioWeb)
+       {
+        Validaciones.Nombre(nombre, "El nombre de la editorial no es válido.");
+        Validaciones.Pais(paisOrigen, "El país de origen no es válido.");
+        Validaciones.AnioFundacion(anioFundacion, "El año de fundación no es válido.");
+        Validaciones.SitioWeb(sitioWeb, "El sitio web no es válido.");
+
+        this.nombre = nombre;
+        this.paisOrigen = paisOrigen;
+        this.anioFundacion = anioFundacion;
+        this.sitioWeb = sitioWeb;
+       }
+
 
        public string Nombre
        {
            get { return nombre; }
            set
            {
-               Validaciones.ValidarNombre(value, "El nombre de la editorial no es válido.");
+               Validaciones.Nombre(value, "El nombre de la editorial no es válido.");
                nombre = value;
            }
        }
@@ -24,7 +37,7 @@ namespace EjemploEditorial
            get { return paisOrigen; }
            set
            {
-               Validaciones.ValidarPais(value, "El país de origen no es válido.");
+               Validaciones.Pais(value, "El país de origen no es válido.");
                paisOrigen = value;
            }
        }
@@ -35,7 +48,7 @@ namespace EjemploEditorial
            get { return anioFundacion; }
            set
            {
-               Validaciones.ValidarAnioFundacion(value, "El año de fundación no es válido.");
+               Validaciones.AnioFundacion(value, "El año de fundación no es válido.");
                anioFundacion = value;
            }
        }
@@ -46,7 +59,7 @@ namespace EjemploEditorial
            get { return sitioWeb; }
            set
            {
-               Validaciones.ValidarSitioWeb(value, "El sitio web no es válido.");
+               Validaciones.SitioWeb(value, "El sitio web no es válido.");
                sitioWeb = value;
            }
        }
