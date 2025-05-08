@@ -2,7 +2,7 @@ namespace EjemploEditorial
 {
    public static class Validaciones
    {
-       public static void ValidarNombre(string nombre, string mensajeError)
+       public static void Nombre(string nombre, string mensajeError)
        {
            if (string.IsNullOrWhiteSpace(nombre) || nombre.Length < 2)
            {
@@ -11,7 +11,7 @@ namespace EjemploEditorial
        }
 
 
-       public static void ValidarPais(string pais, string mensajeError)
+       public static void Pais(string pais, string mensajeError)
        {
            if (string.IsNullOrWhiteSpace(pais) || pais.Length < 4)
            {
@@ -20,7 +20,7 @@ namespace EjemploEditorial
        }
 
 
-       public static int ValidarAnioFundacion(string anioInput, string mensajeError)
+       public static int AnioFundacion(string anioInput, string mensajeError)
        {
            if (string.IsNullOrWhiteSpace(anioInput) || !int.TryParse(anioInput, out int anio))
            {
@@ -34,7 +34,7 @@ namespace EjemploEditorial
        }
 
 
-       public static void ValidarAnioFundacion(int anio, string mensajeError)
+       public static void AnioFundacion(int anio, string mensajeError)
        {
            string anioStr = anio.ToString();
            if (anioStr.Length != 4 || anio < 1000 || anio > DateTime.Now.Year)
@@ -44,7 +44,7 @@ namespace EjemploEditorial
        }
 
 
-       public static void ValidarSitioWeb(string sitioWeb, string mensajeError)
+       public static void SitioWeb(string sitioWeb, string mensajeError)
        {
            if (string.IsNullOrWhiteSpace(sitioWeb) ||
                !sitioWeb.ToLower().StartsWith("www.") ||
