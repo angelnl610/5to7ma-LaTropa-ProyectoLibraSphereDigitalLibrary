@@ -1,1 +1,0 @@
-# 5to7ma-LaTropa-ProyectoLibraSphereDigitalLibrary
