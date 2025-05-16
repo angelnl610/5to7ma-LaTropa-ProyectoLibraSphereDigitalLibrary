@@ -1,9 +1,9 @@
-// Faltan metodos
 
 namespace LibraSphere;
 
 public class Editorial
 {
+
     private string Nombre { get;  set; }
     private string PaisOrigen { get;  set; }
     private int AnioFundacion { get;  set; }
@@ -48,7 +48,7 @@ public class Editorial
     public int GetAnioFundacion() => AnioFundacion;
     public string GetSitioWeb() => SitioWeb;
 
-// metodos
 
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {Nombre} n/PaisOrigen: {PaisOrigen} n/Fundacion: {AnioFundacion} n/Sitio web: {SitioWeb}");
 
 }

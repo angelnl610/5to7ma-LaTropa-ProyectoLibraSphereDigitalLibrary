@@ -1,11 +1,20 @@
-// Faltan metodos
 
-namespace LibraSphere
-{
+namespace LibraSphere;
+
 
 
     public class Prestamo
     {
+
+        public enum EstadoPrestamo
+        {
+            Activo,
+            Devuelto,
+            DevueltoVencido
+
+        }
+
+
 
         // Atributos
         private int IdPrestamo { get;  set; }
@@ -14,7 +23,7 @@ namespace LibraSphere
         private DateOnly FechaDevolucion { get;  set; }
         private DateOnly? FechaDevolucionReal { get;  set; }
 
-        private EEstadoPrestamo Estado {get;  set;  } 
+        private EstadoPrestamo Estado {get;  set;  } 
 
 
         // Constructor
@@ -31,7 +40,7 @@ namespace LibraSphere
 
             this.Libro = libro;
 
-            this.Estado = EEstadoPrestamo.Devuelto;
+            this.Estado = EstadoPrestamo.Devuelto;
             
         }
 
@@ -65,9 +74,9 @@ namespace LibraSphere
             this.FechaDevolucionReal = fechaReal;
         }
         
-        public void SetEstado(EEstadoPrestamo estadoPrestamo)
+        public void SetEstado(EstadoPrestamo estadoPrestamo)
         {
-            this.Estado = EEstadoPrestamo.Devuelto;
+            this.Estado = EstadoPrestamo.Devuelto;
         }
 
         // Getters
@@ -77,6 +86,8 @@ namespace LibraSphere
         public DateOnly GetFechaDevolucion() => FechaDevolucion;
         public DateOnly? GetFechaDevolucionReal() => FechaDevolucionReal;
 
-        public EEstadoPrestamo GetEstadoPrestamo() => Estado;
+        public EstadoPrestamo GetEstadoPrestamo() => Estado;
+
+        void MostrarDatos() => Console.WriteLine($"idPrestamo: {IdPrestamo} n/FechaEmision: {FechaEmision} n/Fecha devolucion: {FechaDevolucion} n/Fecha devolución real: {FechaDevolucionReal}");
+    
     }
-}

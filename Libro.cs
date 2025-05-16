@@ -1,6 +1,5 @@
-// Faltan metodos
 
-namespace LibraSphere
+namespace LibraSphere 
 {
     public class Libro
     {
@@ -75,11 +74,14 @@ namespace LibraSphere
         public string GetAutor() => Autor;
         public int GetCantPag() => CantPag;
         public bool GetLibroEnUso() => LibroEnUso;
+
+
+        public void MostrarDatos() => Console.WriteLine($"Titulo: {Titulo} n/ISBN: {Isbn} n/Autor: {Autor} n/Idioma: {Idioma} n/Cantidad de paginas: {CantPag} n/Libro en uso: {LibroEnUso}");
+
     }
 
     
-
-
+    
 }
 
 

@@ -108,7 +108,7 @@ namespace LibraSphere
         throw new ArgumentException(mensaje);
             }
         }
-        public static void FechaMayorDeEdad(DateTime fechaNacimiento, string mensaje)
+        public static void FechaMayorDeTrece(DateTime fechaNacimiento, string mensaje)
         {
             int edad = DateTime.Today.Year - fechaNacimiento.Year;
  
@@ -117,7 +117,7 @@ namespace LibraSphere
                 edad--;
             }
 
-            if (edad < 18)
+            if (edad < 13)
             {
             throw new ArgumentException(mensaje);
             }

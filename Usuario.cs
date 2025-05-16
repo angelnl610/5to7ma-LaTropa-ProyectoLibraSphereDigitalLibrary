@@ -1,8 +1,8 @@
-// Faltan metodos 
+
 
 namespace LibraSphere;
 
-public class Usuario
+public class Usuario 
 {
     private string NombreCompleto { get;  set; }
     private string CorreoElectronico { get;  set; }
@@ -22,7 +22,7 @@ public class Usuario
         Validaciones.CorreoElectronico(correoElectronico, "El correo electronico no es valido.");
         this.CorreoElectronico = correoElectronico;
 
-        Validaciones.FechaMayorDeEdad(fechaNacimiento, "El usuario debe tener al menos 13 años.");
+        Validaciones.FechaMayorDeTrece(fechaNacimiento, "El usuario debe tener al menos 13 años.");
         this.FechaNacimiento = fechaNacimiento;
 
         Validaciones.CadenaMin(numeroDocumento, 6, "El numero de documento debe tener al menos 6 caracteres.");
@@ -52,7 +52,7 @@ public class Usuario
 
         public void SetFechaNacimiento(DateTime fechaNacimiento)
         {
-            Validaciones.FechaMayorDeEdad(fechaNacimiento, "El usuario debe ser mayor de edad");
+            Validaciones.FechaMayorDeTrece(fechaNacimiento, "El usuario debe ser mayor de edad");
             this.FechaNacimiento = fechaNacimiento;
         }
 
@@ -77,4 +77,7 @@ public class Usuario
 
     // metodoss
     
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {NombreCompleto} \nDNI: {NumeroDocumento} \nCorreo Electronico: {CorreoElectronico}  \nNacimiento: {FechaNacimiento} /nMembresia activa: {MembresiaActiva}");
+
+
 }
