@@ -6,7 +6,7 @@ namespace LibraSphere;
         {
             Activo,
             Devuelto,
-            DevueltoVencido,
+            DevueltoVencido
 
         }
 

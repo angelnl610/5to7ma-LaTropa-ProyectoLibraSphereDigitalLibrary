@@ -74,5 +74,7 @@ public class Usuario
         public string GetDocumento() => NumeroDocumento;
         public string GetContraseña() => Contraseña;
         public bool GetMembresia() => MembresiaActiva;
+
+    // metodoss
     
 }

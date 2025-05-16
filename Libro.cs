@@ -76,4 +76,10 @@ namespace LibraSphere
         public int GetCantPag() => CantPag;
         public bool GetLibroEnUso() => LibroEnUso;
     }
+
+    
+
+
 }
+
+

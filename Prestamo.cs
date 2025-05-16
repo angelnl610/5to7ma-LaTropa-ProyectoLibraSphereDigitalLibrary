@@ -12,7 +12,9 @@ namespace LibraSphere
         private DateOnly FechaEmision { get;  set; }
         private Libro Libro { get;  set; }
         private DateOnly FechaDevolucion { get;  set; }
-        private DateOnly? FechaDevolucionReal { get;  set; } 
+        private DateOnly? FechaDevolucionReal { get;  set; }
+
+        private EEstadoPrestamo Estado {get;  set;  } 
 
 
         // Constructor
@@ -28,6 +30,8 @@ namespace LibraSphere
 
 
             this.Libro = libro;
+
+            this.Estado = EEstadoPrestamo.Devuelto;
             
         }
 
@@ -61,11 +65,18 @@ namespace LibraSphere
             this.FechaDevolucionReal = fechaReal;
         }
         
+        public void SetEstado(EEstadoPrestamo estadoPrestamo)
+        {
+            this.Estado = EEstadoPrestamo.Devuelto;
+        }
+
         // Getters
         public int GetIdPrestamo() => IdPrestamo;
         public DateOnly GetFechaEmision() => FechaEmision;
         public Libro GetLibro() => Libro;
         public DateOnly GetFechaDevolucion() => FechaDevolucion;
         public DateOnly? GetFechaDevolucionReal() => FechaDevolucionReal;
+
+        public EEstadoPrestamo GetEstadoPrestamo() => Estado;
     }
 }

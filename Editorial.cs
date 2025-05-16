@@ -26,11 +26,29 @@ public class Editorial
         this.SitioWeb = sitioWeb;
     }
 
+    // Set
     
-
-    // GETTERS
+    public void SetNombre(string nombre)
+    {
+        this.Nombre = nombre;
+    }        
+    public void SetPaisOrigen(string paisOrigen)
+    {
+        this.PaisOrigen = paisOrigen;
+    }        public void SetAnioFundacion(int anioFundacion)
+    {
+        this.AnioFundacion = anioFundacion;
+    }        public void SetSitioWeb(string sitioWeb)
+    {
+        this.SitioWeb = sitioWeb;
+    }
+    // Get
     public string GetNombre() => Nombre;
     public string GetPaisOrigen() => PaisOrigen;
     public int GetAnioFundacion() => AnioFundacion;
     public string GetSitioWeb() => SitioWeb;
+
+// metodos
+
+
 }
