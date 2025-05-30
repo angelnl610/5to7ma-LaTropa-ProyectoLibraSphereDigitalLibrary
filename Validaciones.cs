@@ -48,17 +48,30 @@ namespace LibraSphere
             }
         }
 
+        public static DateOnly FechaValida(string fecha)
+        {
+
+            if (!DateOnly.TryParse(fecha, out DateOnly resultado))
+            {
+                throw new ArgumentException("El formato de la fecha debe ser 'YYYY-MM-DD");
+
+            }
+
+            return resultado;
+
+         }
         // 
         public static void CorreoElectronico(string nombreAtributo, string mensaje)
         {
-            if(nombreAtributo.LastIndexOf("@") < nombreAtributo.LastIndexOf("."))
+            if (nombreAtributo.LastIndexOf("@") < nombreAtributo.LastIndexOf("."))
             {
                 if (!((nombreAtributo.LastIndexOf("@") >= 3) && ((nombreAtributo.Substring(nombreAtributo.LastIndexOf("@"), nombreAtributo.LastIndexOf(".") - nombreAtributo.LastIndexOf("@"))).Length >= 4) && ((nombreAtributo.Substring(nombreAtributo.LastIndexOf("."))).Length == 4)))
                 {
-                    throw new ArgumentException(mensaje); 
+                    throw new ArgumentException(mensaje);
                 }
-            }else
-                throw new ArgumentException(mensaje);   
+            }
+            else
+                throw new ArgumentException(mensaje);
         }
 
 
@@ -108,14 +121,9 @@ namespace LibraSphere
         throw new ArgumentException(mensaje);
             }
         }
-        public static void FechaMayorDeTrece(DateTime fechaNacimiento, string mensaje)
+        public static void FechaMayorDeTrece(DateOnly fechaNacimiento, string mensaje)
         {
             int edad = DateTime.Today.Year - fechaNacimiento.Year;
- 
-            if (fechaNacimiento > DateTime.Today.AddYears(-edad))
-            {
-                edad--;
-            }
 
             if (edad < 13)
             {

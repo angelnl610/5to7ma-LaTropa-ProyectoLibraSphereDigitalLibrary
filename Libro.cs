@@ -11,7 +11,7 @@ namespace LibraSphere
         private bool LibroEnUso { get; set; }
 
         // Constructor
-        public Libro(long isbn, string titulo, string autor, int cantPag, string idioma)
+        public Libro(long isbn, string titulo, string autor, int cantPag, string idioma, bool LibroEnUso)
         {
             Validaciones.EnteroBetweenLong(isbn, 0, 9999999999999, "El ISBN debe contener 13 digitos");
             this.Isbn = isbn;   
@@ -76,7 +76,7 @@ namespace LibraSphere
         public bool GetLibroEnUso() => LibroEnUso;
 
 
-        public void MostrarDatos() => Console.WriteLine($"Titulo: {Titulo} n/ISBN: {Isbn} n/Autor: {Autor} n/Idioma: {Idioma} n/Cantidad de paginas: {CantPag} n/Libro en uso: {LibroEnUso}");
+        public void MostrarDatos() => Console.WriteLine($"Titulo: {Titulo} \nISBN: {Isbn} \nAutor: {Autor} \nIdioma: {Idioma} \nCantidad de paginas: {CantPag} \nLibro en uso: {LibroEnUso}");
 
     }
 

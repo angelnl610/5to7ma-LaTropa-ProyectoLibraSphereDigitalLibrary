@@ -1,25 +1,25 @@
+using Microsoft.VisualBasic;
+
 namespace LibraSphere
 {
     public class CrearObjeto
     {
-        
-        public static Editorial Editorial()
-        { 
+
+        public static Editorial CrearEditorial()
+        {
 
 
             string Nombre = ConversionParse.Cadena("Ingrese el nombre de la editorial");
             string PaisOrigen = ConversionParse.Cadena("Ingrese el pais de origen");
             int AnioFundacion = ConversionParse.Entero("Ingrese el año de fundacion");
-            string SitioWeb  = ConversionParse.Cadena("Ingrese el sitio web");
+            string SitioWeb = ConversionParse.Cadena("Ingrese el sitio web");
 
-            Editorial editorial = new Editorial (Nombre, PaisOrigen, AnioFundacion, SitioWeb);
+            Editorial editorial = new Editorial(Nombre, PaisOrigen, AnioFundacion, SitioWeb);
 
             return editorial;
         }
 
-
-        /* No se por qué en Libro tira error. 
-        public static Libro Libro()
+        public static Libro CrearLibro()
         {
 
             long Isbn = ConversionParse.Long("Ingrese el ISBN del libro");
@@ -34,10 +34,10 @@ namespace LibraSphere
             return libro;
 
         }
-        */
 
-        /* Aca pasa algo similar pero en FechaNacimiento
-        public static Usuario Usuario()
+
+
+        public static Usuario CrearUsuario()
         {
 
 
@@ -49,20 +49,20 @@ namespace LibraSphere
             string Contraseña = ConversionParse.Cadena("Ingrese su contraseña");
             bool MembresiaActiva = false;
 
-            Usuario usuario = new Usuario(NombreCompleto, CorreoElectronico, FechaNacimiento, NumeroDocumento, Direccion, Contraseña, MembresiaActiva)
+            Usuario usuario = new Usuario(NombreCompleto, CorreoElectronico, FechaNacimiento, NumeroDocumento, Direccion, Contraseña, MembresiaActiva);
 
             return usuario;
         }
 
-        */
 
+        public static Prestamo CrearPrestamo(Libro libro, Usuario usuario)
+        {
+            string fechaDevolucion = ConversionParse.Cadena("Ingrese la fecha con el formato 'YYYY-MM-DD'");
 
-        // Falta metodo para crear Prestamo
+            Prestamo prestamo = new Prestamo(libro, fechaDevolucion, usuario);
 
-
-
-
-
+            return prestamo;
+        }
 
 
     }

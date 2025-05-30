@@ -49,6 +49,6 @@ public class Editorial
     public string GetSitioWeb() => SitioWeb;
 
 
-    public void MostrarDatos() => Console.WriteLine($"Nombre: {Nombre} n/PaisOrigen: {PaisOrigen} n/Fundacion: {AnioFundacion} n/Sitio web: {SitioWeb}");
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {Nombre} \nPaisOrigen: {PaisOrigen} \nFundacion: {AnioFundacion} \nSitio web: {SitioWeb}");
 
 }

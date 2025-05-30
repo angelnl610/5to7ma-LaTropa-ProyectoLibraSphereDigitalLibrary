@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LibraSphereDigitalLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e7687ddc781a0d5355fbc6a6c8925329f6988e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a3cec4b67919df283d9f2facd7fcfb5ea76f12e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LibraSphereDigitalLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LibraSphereDigitalLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
