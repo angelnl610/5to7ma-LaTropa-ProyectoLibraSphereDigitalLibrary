@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Desktop\\LibraSphereDigitalLibrary\\LibraSphereDigitalLibrary.csproj": {}
+    "/home/et12alumno/5to7ma-LaTropa-ProyectoLibraSphereDigitalLibrary/LibraSphereDigitalLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Desktop\\LibraSphereDigitalLibrary\\LibraSphereDigitalLibrary.csproj": {
+    "/home/et12alumno/5to7ma-LaTropa-ProyectoLibraSphereDigitalLibrary/LibraSphereDigitalLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Desktop\\LibraSphereDigitalLibrary\\LibraSphereDigitalLibrary.csproj",
+        "projectUniqueName": "/home/et12alumno/5to7ma-LaTropa-ProyectoLibraSphereDigitalLibrary/LibraSphereDigitalLibrary.csproj",
         "projectName": "LibraSphereDigitalLibrary",
-        "projectPath": "C:\\Users\\Lenovo\\Desktop\\LibraSphereDigitalLibrary\\LibraSphereDigitalLibrary.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Desktop\\LibraSphereDigitalLibrary\\obj\\",
+        "projectPath": "/home/et12alumno/5to7ma-LaTropa-ProyectoLibraSphereDigitalLibrary/LibraSphereDigitalLibrary.csproj",
+        "packagesPath": "/home/et12alumno/.nuget/packages/",
+        "outputPath": "/home/et12alumno/5to7ma-LaTropa-ProyectoLibraSphereDigitalLibrary/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/et12alumno/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.408/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.116/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
