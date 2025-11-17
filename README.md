@@ -130,7 +130,7 @@ Cada opción te lleva a menús específicos según el tipo de usuario.
 
 ## 📌 Requisitos del Sistema
 
-* .NET 6 (o superior)
+* .NET 8 (o superior)
 * Consola de Windows, Linux o Mac
 
 ---
