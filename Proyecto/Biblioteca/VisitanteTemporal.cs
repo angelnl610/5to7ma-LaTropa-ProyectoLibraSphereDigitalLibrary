@@ -14,4 +14,4 @@ public class VisitanteTemporal : UsuarioBase
         foreach (var material in materialesLimitados)
             material.MostrarResumen();
     }
-}
+}   
