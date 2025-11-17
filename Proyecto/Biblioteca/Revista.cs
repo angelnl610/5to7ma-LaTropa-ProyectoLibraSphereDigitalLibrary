@@ -2,9 +2,9 @@ namespace DigitalLibrary;
 
 public class Revista : MaterialDigital, IPrestable
 {
-    public int NumeroEdicion { get; set; }
-    public string Periodicidad { get; set; }
-    public bool EstaArchivada { get; set; }
+    public int NumeroEdicion { get; private set; }
+    public string Periodicidad { get; private set; }
+    public bool EstaArchivada { get; private set; }
 
     public Revista(string id, string titulo, string autor, DateOnly fechaPublicacion, int numeroEdicion, string periodicidad, bool estaArchivada)
         : base(id, titulo, autor, fechaPublicacion)

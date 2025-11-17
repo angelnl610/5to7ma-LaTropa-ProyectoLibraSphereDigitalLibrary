@@ -2,10 +2,10 @@ namespace DigitalLibrary;
 
 public class Editorial
 {
-    public string Nombre { get; set; }
-    public string PaisOrigen { get; set; }
-    public int AnioFundacion { get; set; }
-    public string SitioWeb { get; set; }
+    public string Nombre { get; private set; }
+    public string PaisOrigen { get; private set; }
+    public int AnioFundacion { get; private set; }
+    public string SitioWeb { get; private set; }
 
     public Editorial(string nombre, string paisOrigen, int anioFundacion, string sitioWeb)
     {

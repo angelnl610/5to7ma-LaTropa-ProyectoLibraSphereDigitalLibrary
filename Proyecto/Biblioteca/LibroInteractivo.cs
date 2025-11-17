@@ -2,8 +2,8 @@ namespace DigitalLibrary;
 
 public class LibroInteractivo : MaterialDigital, IPrestable, IMultimedia
 {
-    public string Plataforma { get; set; }
-    public int RecursosMultimedia { get; set; }
+    public string Plataforma { get; private set; }
+    public int RecursosMultimedia { get; private set; }
 
     public LibroInteractivo(string id, string titulo, string autor, DateOnly fechaPublicacion, string plataforma, int recursosMultimedia)
         : base(id, titulo, autor, fechaPublicacion)

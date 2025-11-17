@@ -9,13 +9,13 @@ public class Prestamo
         Vencido
     }
 
-    public DateOnly FechaEmision { get; set; }
-    public DateOnly FechaDevolucion { get; set; }
-    public DateOnly? FechaDevolucionReal { get; set; }
-    public EstadoPrestamo Estado { get; set; }
-    public string SubEstado { get; set; }
-    public MaterialDigital Material { get; set; }
-    public UsuarioBase Usuario { get; set; }
+    public DateOnly FechaEmision { get; private set; }
+    public DateOnly FechaDevolucion { get; private set; }
+    public DateOnly? FechaDevolucionReal { get; private set; }
+    public EstadoPrestamo Estado { get; private set; }
+    public string SubEstado { get; private set; }
+    public MaterialDigital Material { get; private set; }
+    public UsuarioBase Usuario { get; private set; }
 
     public Prestamo(MaterialDigital material, string fechaDevolucion, UsuarioBase usuario)
     {

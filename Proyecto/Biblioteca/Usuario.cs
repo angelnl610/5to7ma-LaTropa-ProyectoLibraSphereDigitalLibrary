@@ -8,11 +8,11 @@ public enum TipoMembresia
 
 public class Usuario : UsuarioBase
 {
-    public string FechaNacimiento { get; set; }
-    public string NumeroDocumento { get; set; }
-    public string Direccion { get; set; }
-    public string Contrasena { get; set; }
-    public TipoMembresia Membresia { get; set; }
+    public string FechaNacimiento { get; private set; }
+    public string NumeroDocumento { get; private set; }
+    public string Direccion { get; private set; }
+    public string Contrasena { get; private set; }
+    public TipoMembresia Membresia { get; private set; }
 
     public Usuario(string id, string nombre, string correo, string fechaNacimiento, string numeroDocumento, string direccion, string contrasena, TipoMembresia membresia)
         : base(id, nombre, correo)

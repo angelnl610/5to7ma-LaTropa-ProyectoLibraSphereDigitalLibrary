@@ -12,10 +12,10 @@ public enum GeneroLiterario
 
 public class Libro : MaterialDigital, IPrestable
 {
-    public GeneroLiterario Genero { get; set; }
-    public int CantPaginas { get; set; }
-    public string Idioma { get; set; }
-    public Editorial Editorial { get; set; }
+    public GeneroLiterario Genero { get; private set; }
+    public int CantPaginas { get; private set; }
+    public string Idioma { get; private set; }
+    public Editorial Editorial { get; private set; }
 
     public Libro(string id, string titulo, string autor, DateOnly fechaPublicacion, GeneroLiterario genero, int cantPaginas, string idioma, Editorial editorial)
         : base(id, titulo, autor, fechaPublicacion)

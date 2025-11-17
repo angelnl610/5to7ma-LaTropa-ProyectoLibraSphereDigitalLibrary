@@ -2,9 +2,9 @@ namespace DigitalLibrary;
 
 public class Audiolibro : MaterialDigital, IPrestable, IMultimedia
 {
-    public string Narrador { get; set; }
-    public int DuracionMinutos { get; set; }
-    public string FormatoArchivo { get; set; }
+    public string Narrador { get; private set; }
+    public int DuracionMinutos { get; private set; }
+    public string FormatoArchivo { get; private set; }
 
     public Audiolibro(string id, string titulo, string autor, DateOnly fechaPublicacion, string narrador, int duracionMinutos, string formatoArchivo)
         : base(id, titulo, autor, fechaPublicacion)
