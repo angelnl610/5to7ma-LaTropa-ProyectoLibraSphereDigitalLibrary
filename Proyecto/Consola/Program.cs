@@ -11,7 +11,7 @@ class Program
         while (true)
         {
             Console.WriteLine("\n=== Menú de LibraSphere ===");
-            Console.WriteLine("1. Crear Material o Usuario");
+            Console.WriteLine("1. Crear Materiales, Usuarios y Préstamos");
             Console.WriteLine("2. Explorar Catálogo como Bibliotecario");
             Console.WriteLine("3. Explorar Catálogo como Usuario Premium");
             Console.WriteLine("4. Explorar Catálogo como Visitante");

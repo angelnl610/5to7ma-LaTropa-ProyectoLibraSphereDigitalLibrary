@@ -63,10 +63,11 @@ Tipos de usuario:
 La clase `Prestamo` gestiona:
 
 * verificar disponibilidad
-* duración según tipo de usuario
 * estados y subestados
 * vencimientos
 * devoluciones
+* La Fecha inicial del Préstamo es la actual en la que se está usando el programa
+* Usurios Estandar tienen fecha máxima de préstamos de 15 días y Usuarios Premium de 30 días
 
 ---
 

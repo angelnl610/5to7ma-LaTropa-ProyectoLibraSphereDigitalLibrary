@@ -14,7 +14,7 @@ public static class CrearObjeto
             string paisOrigen = Console.ReadLine();
             Console.Write("Año de fundación: ");
             int anioFundacion = int.Parse(Console.ReadLine());
-            Console.Write("Sitio web: ");
+            Console.Write("Sitio web (https://ejemplo.com): ");
             string sitioWeb = Console.ReadLine();
             Console.WriteLine("----");
             return new Editorial(nombre, paisOrigen, anioFundacion, sitioWeb);
@@ -34,7 +34,7 @@ public static class CrearObjeto
             Console.WriteLine("----");
             Console.Write("Tipo de material (Libro/Audiolibro/Revista/LibroInteractivo): ");
             string tipo = Console.ReadLine().ToLower();
-            Console.Write("ID (ISBN): ");
+            Console.Write("ID (ISBN)(13 números): ");
             string id = Console.ReadLine();
             Console.Write("Título: ");
             string titulo = Console.ReadLine();
@@ -118,7 +118,7 @@ public static class CrearObjeto
             string id = Console.ReadLine();
             Console.Write("Nombre: ");
             string nombre = Console.ReadLine();
-            Console.Write("Correo electrónico: ");
+            Console.Write("Correo electrónico (@ y .com): ");
             string correo = Console.ReadLine();
 
             UsuarioBase usuario = tipo switch
@@ -146,7 +146,7 @@ public static class CrearObjeto
         string numeroDocumento = Console.ReadLine();
         Console.Write("Dirección: ");
         string direccion = Console.ReadLine();
-        Console.Write("Contraseña: ");
+        Console.Write("Contraseña (8 caráteres): ");
         string contrasena = Console.ReadLine();
         Console.Write("Membresía (Estandar/Premium): ");
         string membresiaInput = Console.ReadLine();
@@ -170,7 +170,7 @@ public static class CrearObjeto
             UsuarioBase usuario = usuarios.Find(u => u.Nombre == nombreUsuario);
             if (usuario == null) throw new ArgumentException("Usuario no encontrado.");
 
-            Console.Write("Fecha de devolución (YYYY-MM-DD): ");
+            Console.Write("Ingrese Fecha de devolución (YYYY-MM-DD)(*Fecha de inicio : Fecha Actual*): ");
             string fechaDevolucion = Console.ReadLine();
             Console.WriteLine("----");
             return new Prestamo(material, fechaDevolucion, usuario);
