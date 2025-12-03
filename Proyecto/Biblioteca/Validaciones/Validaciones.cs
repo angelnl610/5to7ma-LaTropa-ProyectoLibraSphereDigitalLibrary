@@ -1,5 +1,11 @@
-namespace DigitalLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Biblioteca.Models;
+using Biblioteca.Enums;
 
+namespace Biblioteca.Validaciones;
 public static class Validaciones
 {
     public static void CadenaMin(string valor, int minimo, string mensaje)

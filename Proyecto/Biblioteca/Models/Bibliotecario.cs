@@ -1,49 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DigitalLibrary;
-public class Bibliotecario : UsuarioBase
-{
-    public Bibliotecario(string id, string nombre, string correo)
-        : base(id, nombre, correo)
-    {
-    }
+namespace Biblioteca.Models ;
 
-    public override void ExplorarCatalogo(List<MaterialDigital> catalogo)
+    public class Bibliotecario : UsuarioBase
     {
-        Console.WriteLine($"Bibliotecario {Nombre} explorando el catálogo completo:");
-        foreach (var material in catalogo)
-            material.MostrarResumen();
-    }
-
-    public void AdministrarCatalogo(List<MaterialDigital> catalogo, MaterialDigital material, bool agregar, List<Prestamo> prestamos)
-    {
-        if (agregar)
+        public Bibliotecario(string id, string nombre, string correo)
+            : base(id, nombre, correo)
         {
-            material.ValidarIntegridad();
-            catalogo.Add(material);
-            Console.WriteLine($"Material {material.Titulo} agregado al catálogo.");
         }
-        else
-        {
-            material.Eliminar(prestamos);
-            catalogo.Remove(material);
-            Console.WriteLine($"Material {material.Titulo} eliminado del catálogo.");
-        }
-    }
 
-    public void GestionarPrestamoVencido(UsuarioBase usuario, MaterialDigital material, List<Prestamo> prestamos)
-    {
-        if (material is IPrestable prestable && !prestable.VerificarDisponibilidad())
+        public override void ExplorarCatalogo(List<MaterialDigital> catalogo)
         {
-            var prestamo = prestamos.Find(p => p.Material.Id == material.Id && p.Estado == EstadoPrestamo.Activo);
-            if (prestamo != null)
+            Console.WriteLine($"Bibliotecario {Nombre} explorando el catálogo completo:");
+            foreach (var material in catalogo)
+                material.MostrarResumen();
+        }
+
+        public void AdministrarCatalogo(
+            List<MaterialDigital> catalogo,
+            MaterialDigital material,
+            bool agregar,
+            List<Prestamo> prestamos)
+        {
+            if (agregar)
             {
-                prestamo.ActualizarEstadoVencido();
-                if (prestamo.Estado == EstadoPrestamo.Vencido)
+                material.ValidarIntegridad();
+                catalogo.Add(material);
+                Console.WriteLine($"Material {material.Titulo} agregado al catálogo.");
+            }
+            else
+            {
+                material.Eliminar(prestamos);
+                catalogo.Remove(material);
+                Console.WriteLine($"Material {material.Titulo} eliminado del catálogo.");
+            }
+        }
+
+        public void GestionarPrestamoVencido(
+            UsuarioBase usuario,
+            MaterialDigital material,
+            List<Prestamo> prestamos)
+        {
+            if (material is IPrestable prestable && !prestable.VerificarDisponibilidad())
+            {
+                var prestamo = prestamos.Find(p => 
+                    p.Material.Id == material.Id &&
+                    p.Estado == EstadoPrestamo.Activo);
+
+                if (prestamo != null)
                 {
-                    prestable.Devolver();
-                    Console.WriteLine($"Préstamo vencido de {material.Titulo} gestionado para {usuario.Nombre}");
+                    prestamo.ActualizarEstadoVencido();
+
+                    if (prestamo.Estado == EstadoPrestamo.Vencido)
+                    {
+                        prestable.Devolver();
+                        Console.WriteLine(
+                            $"Préstamo vencido de {material.Titulo} gestionado para {usuario.Nombre}");
+                    }
                 }
             }
         }
     }
-}
+

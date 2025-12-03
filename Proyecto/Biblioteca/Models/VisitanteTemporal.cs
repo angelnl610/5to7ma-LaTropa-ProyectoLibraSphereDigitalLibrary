@@ -1,5 +1,9 @@
-namespace DigitalLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+namespace Biblioteca.Models;
 public class VisitanteTemporal : UsuarioBase
 {
     public VisitanteTemporal(string id, string nombre, string correo)

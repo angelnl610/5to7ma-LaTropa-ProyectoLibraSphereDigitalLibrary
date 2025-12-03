@@ -1,5 +1,11 @@
-namespace DigitalLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Biblioteca.Interface;
 
+
+namespace Biblioteca.Models;
 public class Audiolibro : MaterialDigital, IPrestable, IMultimedia
 {
     public string Narrador { get; private set; }

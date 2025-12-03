@@ -1,5 +1,7 @@
-namespace DigitalLibrary;
-
+using Biblioteca.Models;
+using Biblioteca.Validaciones;
+using Biblioteca.Materiales;
+using DigitalLibrary;   
 public static class CrearObjeto
 {
     public static Editorial CrearEditorial()

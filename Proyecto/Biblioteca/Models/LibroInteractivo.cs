@@ -1,5 +1,10 @@
-namespace DigitalLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Biblioteca.Interface;
 
+namespace Biblioteca.Models;
 public class LibroInteractivo : MaterialDigital, IPrestable, IMultimedia
 {
     public string Plataforma { get; private set; }

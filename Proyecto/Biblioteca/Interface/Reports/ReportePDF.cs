@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
-
-namespace DigitalLibrary
+using System.Linq;
+using System.Threading.Tasks;
+using Biblioteca.Models;
+namespace Biblioteca.Interface.Reports
 {
     public class ReportePDF : IEstrategiaReporte
     {

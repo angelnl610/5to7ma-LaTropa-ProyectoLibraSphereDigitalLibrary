@@ -1,4 +1,7 @@
-﻿namespace DigitalLibrary;
+﻿using Biblioteca.Models;
+using Biblioteca.Materiales;
+using Biblioteca.Validaciones;
+using DigitalLibrary;
 
 class Program
 {

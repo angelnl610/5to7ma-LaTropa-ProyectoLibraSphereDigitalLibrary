@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace DigitalLibrary{
+namespace Biblioteca.Enums
+{
             public enum GeneroLiterario
             {
                 Fantasia,
@@ -13,4 +9,4 @@ namespace DigitalLibrary{
                 Misterio,
                 Otro
             }
-        }
+}

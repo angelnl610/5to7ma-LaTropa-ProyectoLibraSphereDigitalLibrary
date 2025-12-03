@@ -1,5 +1,11 @@
-namespace DigitalLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Biblioteca.Validaciones;
+using Biblioteca.Models;
 
+namespace Biblioteca.Models;
 public abstract class UsuarioBase
 {
     public string Id { get; private set; }

@@ -1,5 +1,9 @@
-namespace DigitalLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
+namespace Biblioteca.Models;
 public class Prestamo
 {
     public DateOnly FechaEmision { get; private set; }

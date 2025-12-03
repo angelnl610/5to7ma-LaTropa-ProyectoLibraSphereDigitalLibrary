@@ -1,4 +1,4 @@
-namespace DigitalLibrary
+namespace Biblioteca.Enums
 {
     public enum EstadoPrestamo
     {
