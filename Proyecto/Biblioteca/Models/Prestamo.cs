@@ -2,13 +2,6 @@ namespace DigitalLibrary;
 
 public class Prestamo
 {
-    public enum EstadoPrestamo
-    {
-        Activo,
-        Devuelto,
-        Vencido
-    }
-
     public DateOnly FechaEmision { get; private set; }
     public DateOnly FechaDevolucion { get; private set; }
     public DateOnly? FechaDevolucionReal { get; private set; }

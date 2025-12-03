@@ -123,7 +123,7 @@ class Program
                             MaterialDigital materialPrestamo = catalogo.Find(m => m.Titulo == tituloPrestamo);
                             if (materialPrestamo != null)
                             {
-                                Prestamo prestamo = prestamos.Find(p => p.Material == materialPrestamo && p.Estado == Prestamo.EstadoPrestamo.Activo);
+                                Prestamo prestamo = prestamos.Find(p => p.Material == materialPrestamo && p.Estado == EstadoPrestamo.Activo);
                                 if (prestamo != null)
                                 {
                                     bibliotecario.GestionarPrestamoVencido(prestamo.Usuario, materialPrestamo, prestamos);

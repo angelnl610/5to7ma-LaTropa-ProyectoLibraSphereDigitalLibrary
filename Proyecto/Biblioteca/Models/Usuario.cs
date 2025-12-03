@@ -1,11 +1,5 @@
 namespace DigitalLibrary;
 
-public enum TipoMembresia
-{
-    Estandar,
-    Premium
-}
-
 public class Usuario : UsuarioBase
 {
     public string FechaNacimiento { get; private set; }

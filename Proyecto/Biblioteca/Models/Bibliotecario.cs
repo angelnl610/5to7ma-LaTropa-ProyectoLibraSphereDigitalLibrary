@@ -1,5 +1,5 @@
-namespace DigitalLibrary;
 
+namespace DigitalLibrary;
 public class Bibliotecario : UsuarioBase
 {
     public Bibliotecario(string id, string nombre, string correo)
@@ -34,11 +34,11 @@ public class Bibliotecario : UsuarioBase
     {
         if (material is IPrestable prestable && !prestable.VerificarDisponibilidad())
         {
-            var prestamo = prestamos.Find(p => p.Material.Id == material.Id && p.Estado == Prestamo.EstadoPrestamo.Activo);
+            var prestamo = prestamos.Find(p => p.Material.Id == material.Id && p.Estado == EstadoPrestamo.Activo);
             if (prestamo != null)
             {
                 prestamo.ActualizarEstadoVencido();
-                if (prestamo.Estado == Prestamo.EstadoPrestamo.Vencido)
+                if (prestamo.Estado == EstadoPrestamo.Vencido)
                 {
                     prestable.Devolver();
                     Console.WriteLine($"Préstamo vencido de {material.Titulo} gestionado para {usuario.Nombre}");

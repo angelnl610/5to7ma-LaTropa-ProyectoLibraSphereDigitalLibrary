@@ -1,15 +1,5 @@
 namespace DigitalLibrary;
 
-public enum GeneroLiterario
-{
-    Fantasia,
-    CienciaFiccion,
-    Drama,
-    Romance,
-    Misterio,
-    Otro
-}
-
 public class Libro : MaterialDigital, IPrestable
 {
     public GeneroLiterario Genero { get; private set; }
