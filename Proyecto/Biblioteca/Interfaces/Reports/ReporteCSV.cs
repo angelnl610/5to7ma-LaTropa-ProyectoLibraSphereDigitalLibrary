@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Biblioteca.Interfaces;
 using Biblioteca.Models;
 
 namespace Biblioteca.Interfaces.Reports
