@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Biblioteca.Interface;
+using Biblioteca.Interfaces;
 using Biblioteca.Models;
 
-namespace Biblioteca.Interface.Reports
+namespace Biblioteca.Interfaces.Reports
 {
     public class ReporteCSV : IEstrategiaReporte
     {

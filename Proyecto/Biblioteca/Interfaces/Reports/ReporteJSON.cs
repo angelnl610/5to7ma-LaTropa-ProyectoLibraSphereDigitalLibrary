@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Biblioteca.Enums;
 using Biblioteca.Models;
 
-namespace Biblioteca.Interface.Reports
+namespace Biblioteca.Interfaces.Reports
 {
     public class ReporteJSON : IEstrategiaReporte
     {

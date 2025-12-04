@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Biblioteca.Interface;
-
+using Biblioteca.Interfaces;
 
 namespace Biblioteca.Models;
 public class Audiolibro : MaterialDigital, IPrestable, IMultimedia
@@ -15,9 +11,9 @@ public class Audiolibro : MaterialDigital, IPrestable, IMultimedia
     public Audiolibro(string id, string titulo, string autor, DateOnly fechaPublicacion, string narrador, int duracionMinutos, string formatoArchivo)
         : base(id, titulo, autor, fechaPublicacion)
     {
-        Validaciones.CadenaMin(narrador, 1, "El narrador no puede estar vacío.");
-        Validaciones.EnteroMin(duracionMinutos, 1, "La duración debe ser mayor a 0.");
-        Validaciones.ValidarFormatoArchivo(formatoArchivo, "El formato de archivo debe ser MP3, AAC o WAV.");
+        Validacion.CadenaMin(narrador, 1, "El narrador no puede estar vacío.");
+        Validacion.EnteroMin(duracionMinutos, 1, "La duración debe ser mayor a 0.");
+        Validacion.ValidarFormatoArchivo(formatoArchivo, "El formato de archivo debe ser MP3, AAC o WAV.");
 
         Narrador = narrador;
         DuracionMinutos = duracionMinutos;
@@ -31,7 +27,7 @@ public class Audiolibro : MaterialDigital, IPrestable, IMultimedia
 
     public override void ValidarIntegridad()
     {
-        Validaciones.ValidarISBN(Id, "El ISBN del audiolibro es inválido.");
+        Validacion.ValidarISBN(Id, "El ISBN del audiolibro es inválido.");
         if (DuracionMinutos <= 0) throw new ArgumentException("La duración debe ser mayor a 0.");
         if (string.IsNullOrEmpty(FormatoArchivo)) throw new ArgumentException("El formato de archivo es inválido.");
     }

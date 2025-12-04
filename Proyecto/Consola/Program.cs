@@ -1,7 +1,7 @@
-﻿using Biblioteca.Models;
-using Biblioteca.Materiales;
-using Biblioteca.Validaciones;
-using DigitalLibrary;
+﻿using Biblioteca.Enums;
+using Biblioteca.Interfaces;
+using Biblioteca.Interfaces.Reports;
+using Biblioteca.Models;
 
 class Program
 {

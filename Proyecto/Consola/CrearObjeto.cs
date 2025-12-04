@@ -1,7 +1,6 @@
 using Biblioteca.Models;
-using Biblioteca.Validaciones;
-using Biblioteca.Materiales;
-using DigitalLibrary;   
+using Biblioteca.Enums;
+using Biblioteca;
 public static class CrearObjeto
 {
     public static Editorial CrearEditorial()
@@ -44,7 +43,7 @@ public static class CrearObjeto
             string autor = Console.ReadLine();
             Console.Write("Fecha de publicación (YYYY-MM-DD): ");
             string fecha = Console.ReadLine();
-            DateOnly fechaPublicacion = Validaciones.FechaValida(fecha);
+            DateOnly fechaPublicacion = Validacion.FechaValida(fecha);
 
             MaterialDigital material = tipo switch
             {
@@ -68,7 +67,7 @@ public static class CrearObjeto
     {
         Console.Write("Género (Fantasia, CienciaFiccion, Drama, Romance, Misterio, Otro): ");
         string generoInput = Console.ReadLine();
-        GeneroLiterario genero = Validaciones.ValidarGenero(generoInput, "Género no válido.");
+        GeneroLiterario genero = Validacion.ValidarGenero(generoInput, "Género no válido.");
         Console.Write("Cantidad de páginas: ");
         int cantPaginas = int.Parse(Console.ReadLine());
         Console.Write("Idioma: ");
@@ -152,7 +151,7 @@ public static class CrearObjeto
         string contrasena = Console.ReadLine();
         Console.Write("Membresía (Estandar/Premium): ");
         string membresiaInput = Console.ReadLine();
-        TipoMembresia membresia = Validaciones.ValidarMembresia(membresiaInput, "Membresía no válida.");
+        TipoMembresia membresia = Validacion.ValidarMembresia(membresiaInput, "Membresía no válida.");
         return new Usuario(id, nombre, correo, fechaNacimiento, numeroDocumento, direccion, contrasena, membresia);
     }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Biblioteca.Models;
 
-namespace Biblioteca.Interface;
+namespace Biblioteca.Interfaces;
 public interface IEstrategiaReporte
 {
     void Exportar(List<MaterialDigital> catalogo, string archivo);

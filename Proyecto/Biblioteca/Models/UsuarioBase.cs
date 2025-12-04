@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Biblioteca.Validaciones;
-using Biblioteca.Models;
+
 
 namespace Biblioteca.Models;
 public abstract class UsuarioBase
@@ -14,9 +13,9 @@ public abstract class UsuarioBase
 
     protected UsuarioBase(string id, string nombre, string correo)
     {
-        Validaciones.CadenaMin(id, 1, "El ID del usuario no puede estar vacío.");
-        Validaciones.CadenaMin(nombre, 3, "El nombre debe tener al menos 3 caracteres.");
-        Validaciones.ValidarCorreoElectronico(correo);
+        Validacion.CadenaMin(id, 1, "El ID del usuario no puede estar vacío.");
+        Validacion.CadenaMin(nombre, 3, "El nombre debe tener al menos 3 caracteres.");
+        Validacion.ValidarCorreoElectronico(correo);
 
         Id = id;
         Nombre = nombre;

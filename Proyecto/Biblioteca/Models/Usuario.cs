@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Biblioteca.Models;
+using Biblioteca.Enums;
+using Biblioteca.Interfaces; 
 
 namespace Biblioteca.Models;
 public class Usuario : UsuarioBase
@@ -15,11 +18,11 @@ public class Usuario : UsuarioBase
     public Usuario(string id, string nombre, string correo, string fechaNacimiento, string numeroDocumento, string direccion, string contrasena, TipoMembresia membresia)
         : base(id, nombre, correo)
     {
-        Validaciones.FechaValida(fechaNacimiento, "La fecha de nacimiento no es válida (use YYYY-MM-DD).");
-        Validaciones.FechaMayorDeTrece(DateOnly.Parse(fechaNacimiento), "El usuario debe tener al menos 13 años.");
-        Validaciones.CadenaMin(numeroDocumento, 6, "El número de documento debe tener al menos 6 caracteres.");
-        Validaciones.CadenaMin(direccion, 10, "La dirección debe tener al menos 10 caracteres.");
-        Validaciones.CadenaMin(contrasena, 8, "La contraseña debe tener al menos 8 caracteres.");
+        Validacion.FechaValida(fechaNacimiento, "La fecha de nacimiento no es válida (use YYYY-MM-DD).");
+        Validacion.FechaMayorDeTrece(DateOnly.Parse(fechaNacimiento), "El usuario debe tener al menos 13 años.");
+        Validacion.CadenaMin(numeroDocumento, 6, "El número de documento debe tener al menos 6 caracteres.");
+        Validacion.CadenaMin(direccion, 10, "La dirección debe tener al menos 10 caracteres.");
+        Validacion.CadenaMin(contrasena, 8, "La contraseña debe tener al menos 8 caracteres.");
 
         FechaNacimiento = fechaNacimiento;
         NumeroDocumento = numeroDocumento;

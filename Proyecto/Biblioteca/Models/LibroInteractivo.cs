@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Biblioteca.Interface;
+using Biblioteca.Interfaces;
 
 namespace Biblioteca.Models;
 public class LibroInteractivo : MaterialDigital, IPrestable, IMultimedia
@@ -13,8 +13,8 @@ public class LibroInteractivo : MaterialDigital, IPrestable, IMultimedia
     public LibroInteractivo(string id, string titulo, string autor, DateOnly fechaPublicacion, string plataforma, int recursosMultimedia)
         : base(id, titulo, autor, fechaPublicacion)
     {
-        Validaciones.ValidarPlataforma(plataforma, "La plataforma debe ser iOS, Android o Web.");
-        Validaciones.EnteroMin(recursosMultimedia, 0, "Los recursos multimedia no pueden ser negativos.");
+        Validacion.ValidarPlataforma(plataforma, "La plataforma debe ser iOS, Android o Web.");
+        Validacion.EnteroMin(recursosMultimedia, 0, "Los recursos multimedia no pueden ser negativos.");
 
         Plataforma = plataforma;
         RecursosMultimedia = recursosMultimedia;
@@ -27,7 +27,7 @@ public class LibroInteractivo : MaterialDigital, IPrestable, IMultimedia
 
     public override void ValidarIntegridad()
     {
-        Validaciones.ValidarISBN(Id, "El ISBN del libro interactivo es inválido.");
+        Validacion.ValidarISBN(Id, "El ISBN del libro interactivo es inválido.");
         if (!new[] { "iOS", "Android", "Web" }.Contains(Plataforma, StringComparer.OrdinalIgnoreCase))
             throw new ArgumentException("La plataforma es inválida.");
         if (RecursosMultimedia < 0) throw new ArgumentException("Los recursos multimedia no pueden ser negativos.");

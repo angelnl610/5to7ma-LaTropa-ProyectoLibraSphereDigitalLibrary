@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Biblioteca.Enums;
+using Biblioteca.Interfaces;
 
 namespace Biblioteca.Models;
 public class Prestamo
@@ -28,14 +30,14 @@ public class Prestamo
             throw new InvalidOperationException("El material no es prestable.");
         }
 
-        DateOnly fechaDev = Validaciones.FechaValida(fechaDevolucion);
+        DateOnly fechaDev = Validacion.FechaValida(fechaDevolucion);
         if (usuario is Usuario u && u.Membresia == TipoMembresia.Premium || usuario is UsuarioPremium)
         {
-            Validaciones.FechasPrestamoValidas(DateOnly.FromDateTime(DateTime.Now), fechaDev, 30, "La fecha de devolución debe ser posterior a la fecha de emisión y no exceder los 30 días para usuarios premium.");
+            Validacion.FechasPrestamoValidas(DateOnly.FromDateTime(DateTime.Now), fechaDev, 30, "La fecha de devolución debe ser posterior a la fecha de emisión y no exceder los 30 días para usuarios premium.");
         }
         else
         {
-            Validaciones.FechasPrestamoValidas(DateOnly.FromDateTime(DateTime.Now), fechaDev, 15, "La fecha de devolución debe ser posterior a la fecha de emisión y no exceder los 15 días.");
+            Validacion.FechasPrestamoValidas(DateOnly.FromDateTime(DateTime.Now), fechaDev, 15, "La fecha de devolución debe ser posterior a la fecha de emisión y no exceder los 15 días.");
         }
 
         FechaEmision = DateOnly.FromDateTime(DateTime.Now);
@@ -86,7 +88,7 @@ public class Prestamo
 
     public void ActualizarFechaDevolucionReal(string fechaDevolucionReal)
     {
-        DateOnly fechaReal = Validaciones.FechaValida(fechaDevolucionReal);
+        DateOnly fechaReal = Validacion.FechaValida(fechaDevolucionReal);
         FechaDevolucionReal = fechaReal;
         if (fechaReal <= FechaDevolucion)
         {

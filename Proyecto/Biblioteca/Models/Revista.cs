@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Biblioteca.Interface;
+using Biblioteca.Interfaces;
 namespace Biblioteca.Models;
 public class Revista : MaterialDigital, IPrestable
 {
@@ -13,8 +13,8 @@ public class Revista : MaterialDigital, IPrestable
     public Revista(string id, string titulo, string autor, DateOnly fechaPublicacion, int numeroEdicion, string periodicidad, bool estaArchivada)
         : base(id, titulo, autor, fechaPublicacion)
     {
-        Validaciones.EnteroMin(numeroEdicion, 1, "El número de edición debe ser mayor a 0.");
-        Validaciones.ValidarPeriodicidad(periodicidad, "La periodicidad debe ser Semanal, Mensual o Anual.");
+        Validacion.EnteroMin(numeroEdicion, 1, "El número de edición debe ser mayor a 0.");
+        Validacion.ValidarPeriodicidad(periodicidad, "La periodicidad debe ser Semanal, Mensual o Anual.");
 
         NumeroEdicion = numeroEdicion;
         Periodicidad = periodicidad;
@@ -28,7 +28,7 @@ public class Revista : MaterialDigital, IPrestable
 
     public override void ValidarIntegridad()
     {
-        Validaciones.ValidarISBN(Id, "El ISBN de la revista es inválido.");
+        Validacion.ValidarISBN(Id, "El ISBN de la revista es inválido.");
         if (NumeroEdicion <= 0) throw new ArgumentException("El número de edición debe ser mayor a 0.");
         if (string.IsNullOrEmpty(Periodicidad)) throw new ArgumentException("La periodicidad es inválida.");
     }

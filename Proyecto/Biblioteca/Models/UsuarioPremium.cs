@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Biblioteca.Validaciones;
-using Biblioteca.Models;
+using Biblioteca.Interfaces;
 
 namespace Biblioteca.Models;
 public class UsuarioPremium : UsuarioBase
