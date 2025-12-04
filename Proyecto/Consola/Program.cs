@@ -168,81 +168,18 @@ class Program
                         Console.WriteLine("No hay bibliotecarios registrados. Cree uno primero.");
                     }
                     break;
-
                 case "3":
-                    if (usuarios.Any(u => u is Usuario u2 && u2.Membresia == TipoMembresia.Premium || u is UsuarioPremium))
+                    if (usuarios.Any(u =>
+                            (u is Usuario usu && usu.Membresia == TipoMembresia.Premium)
+                            || u is UsuarioPremium))
                     {
-                        UsuarioBase usuarioPremium = usuarios.First(u => u is Usuario u2 && u2.Membresia == TipoMembresia.Premium || u is UsuarioPremium);
+                        UsuarioBase usuarioPremium =
+                            usuarios.First(u =>
+                                (u is Usuario usu && usu.Membresia == TipoMembresia.Premium)
+                                || u is UsuarioPremium);
+
                         Console.WriteLine("\n=== Explorar como Usuario Premium ===");
                         usuarioPremium.ExplorarCatalogo(catalogo);
-                        Console.WriteLine("\nOpciones de Usuario Premium:");
-                        Console.WriteLine("1. Prestar Material");
-                        Console.WriteLine("2. Devolver Material");
-                        Console.Write("Seleccione una acción: ");
-                        string accionPremium = Console.ReadLine();
-                        if (accionPremium == "1")
-                        {
-                            Console.WriteLine("\n=== Prestar Material ===");
-                            Console.Write("Título del material: ");
-                            string tituloPrestar = Console.ReadLine();
-                            MaterialDigital material = catalogo.Find(m => m.Titulo == tituloPrestar);
-                            if (material != null)
-                            {
-                                try
-                                {
-                                    Console.Write("Fecha de devolución (YYYY-MM-DD): ");
-                                    string fechaDevolucion = Console.ReadLine();
-                                    Prestamo prestamo = new Prestamo(material, fechaDevolucion, usuarioPremium);
-                                    prestamos.Add(prestamo);
-                                    if (usuarioPremium is Usuario u)
-                                        u.PrestarMaterial(material);
-                                    else if (usuarioPremium is UsuarioPremium up)
-                                        up.PrestarMaterial(material);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine($"Error: {ex.Message}");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Material no encontrado.");
-                            }
-                        }
-                        else if (accionPremium == "2")
-                        {
-                            Console.WriteLine("\n=== Devolver Material ===");
-                            Console.Write("Título del material: ");
-                            string tituloDevolver = Console.ReadLine();
-                            MaterialDigital material = catalogo.Find(m => m.Titulo == tituloDevolver);
-                            if (material != null)
-                            {
-                                try
-                                {
-                                    if (usuarioPremium is Usuario u)
-                                        u.DevolverMaterial(material);
-                                    else if (usuarioPremium is UsuarioPremium up)
-                                        up.DevolverMaterial(material);
-                                    Prestamo prestamo = prestamos.Find(p => p.Material == material);
-                                    if (prestamo != null)
-                                    {
-                                        prestamo.ActualizarFechaDevolucionReal(DateOnly.FromDateTime(DateTime.Now).ToString());
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine($"Error: {ex.Message}");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Material no encontrado.");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Acción no válida.");
-                        }
                     }
                     else
                     {
