@@ -1,4 +1,3 @@
-using System;
 using Biblioteca.Interfaces;
 
 namespace Biblioteca.Models;
