@@ -1,5 +1,7 @@
+
 DELIMITER $$
-CREATE PROCEDURE SP_InsertEmpleado(
+CREATE PROCEDURE SP_InsertEmpleadoConDNI(
+    IN pDNI VARCHAR(15),
     IN pNombre VARCHAR(100),
     IN pEdad INT,
     IN pEmail VARCHAR(150),
@@ -7,20 +9,21 @@ CREATE PROCEDURE SP_InsertEmpleado(
     IN pNivelPermiso INT
 )
 BEGIN
-    INSERT INTO Empleado (Nombre, Edad, Email, Contrasena, NivelPermiso)
-    VALUES (pNombre, pEdad, pEmail,  SHA2(pContrasena, 256), pNivelPermiso);
+    INSERT INTO Empleado (DNI, Nombre, Edad, Email, Contrasena, NivelPermiso)
+    VALUES (pDNI, pNombre, pEdad, pEmail, SHA2(pContrasena, 256), pNivelPermiso);
 END $$
-DELIMITER ;
 
--- Stored Procedure para obtener todos los empleados
+
+-- SP para obtener todos los empleados
 DELIMITER $$
-CREATE PROCEDURE SP_GetEmpleados()
+CREATE PROCEDURE SP_GetEmpleadosConDNI()
 BEGIN
-    SELECT * FROM Empleado;
+    SELECT IdEmpleado, DNI, Nombre, Edad, Email, Contrasena, NivelPermiso
+    FROM Empleado;
 END $$
-DELIMITER ;
 
--- Stored Procedure para validar acceso según permiso
+
+-- SP para validar acceso según permiso 
 DELIMITER $$
 CREATE PROCEDURE SP_ValidarAcceso(
     IN pEmpleadoId INT,
@@ -35,4 +38,4 @@ BEGIN
     FROM Empleado
     WHERE IdEmpleado = pEmpleadoId;
 END $$
-DELIMITER ;
+

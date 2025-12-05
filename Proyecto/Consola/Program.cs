@@ -2,6 +2,7 @@
 using Biblioteca.Interfaces;
 using Biblioteca.Interfaces.Reports;
 using Biblioteca.Models;
+using Biblioteca.Repos;
 
 class Program
 {
@@ -19,8 +20,8 @@ class Program
             Console.WriteLine("2. Explorar Catálogo como Bibliotecario");
             Console.WriteLine("3. Explorar Catálogo como Usuario Premium");
             Console.WriteLine("4. Explorar Catálogo como Visitante");
-            Console.WriteLine("5. Salir");
-            Console.WriteLine("6. SAFE ENTRY - Gestión de Empleados");
+            Console.WriteLine("5. SAFE ENTRY - Gestión de Empleados");
+            Console.WriteLine("6. Salir");
             Console.Write("Seleccione una opción: ");
 
             string opcion = Console.ReadLine();
@@ -202,111 +203,131 @@ class Program
                     }
                     break;
 
-                case "5":
-                    Console.WriteLine("Saliendo del sistema...");
-                    return;
                     
-                      case "6":
-                        bool salirSafeEntry = false;
+        case "5": // SAFE ENTRY AHORA ES EL 5
+            bool salirSafeEntry = false;
+            EmpleadoRepo repo = new EmpleadoRepo();
 
-                        while (!salirSafeEntry)
+            while (!salirSafeEntry)
+            {
+                Console.WriteLine("\n=== SAFE ENTRY ===");
+                Console.WriteLine("1. Registrar nuevo empleado");
+                Console.WriteLine("2. Mostrar empleados registrados");
+                Console.WriteLine("3. Validar acceso de un empleado");
+                Console.WriteLine("4. Salir de SAFE ENTRY");
+                Console.Write("Seleccione una opción: ");
+                string opcionSafe = Console.ReadLine();
+
+                switch (opcionSafe)
+                {
+                    case "1":
+                        try
                         {
-                            Console.WriteLine("\n=== SAFE ENTRY ===");
-                            Console.WriteLine("1. Registrar nuevo empleado");
-                            Console.WriteLine("2. Mostrar empleados registrados");
-                            Console.WriteLine("3. Validar acceso de un empleado");
-                            Console.WriteLine("4. Salir de SAFE ENTRY");
-                            Console.Write("Seleccione una opción: ");
-                            string opcionSafe = Console.ReadLine();
+                            Console.Write("Ingrese su DNI: ");
+                            string dni = Console.ReadLine();
 
-                            switch (opcionSafe)
+                            Console.Write("Nombre: ");
+                            string nombre = Console.ReadLine();
+
+                            Console.Write("Edad: ");
+                            int edad = int.Parse(Console.ReadLine());
+                            if (edad < 18)
                             {
-                                case "1":
-                                    try
-                                    {
-                                        Console.Write("ID del empleado (DNI o UUID): ");
-                                        string id = Console.ReadLine();
+                                Console.WriteLine("No se puede registrar a menores de 18 años.");
+                                break;
+                            }
 
-                                        Console.Write("Nombre: ");
-                                        string nombre = Console.ReadLine();
+                            Console.Write("Correo electrónico: ");
+                            string correo = Console.ReadLine();
+                            if (!correo.Contains("@") || !correo.Contains("."))
+                            {
+                                Console.WriteLine("Correo inválido.");
+                                break;
+                            }
 
-                                        Console.Write("Edad: ");
-                                        int edad = int.Parse(Console.ReadLine());
-                                        if (edad < 18)
-                                        {
-                                            Console.WriteLine("No se puede registrar a menores de 18 años.");
-                                            break;
-                                        }
+                            Console.Write("Contraseña (8 caracteres y una mayúscula): ");
+                            string contrasena = Console.ReadLine();
+                            if (contrasena.Length < 8 || !contrasena.Any(char.IsUpper))
+                            {
+                                Console.WriteLine("Contraseña insegura. Debe tener al menos 8 caracteres y una mayúscula.");
+                                break;
+                            }
 
-                                        Console.Write("Correo electrónico: ");
-                                        string correo = Console.ReadLine();
-                                        if (!correo.Contains("@") || !correo.Contains("."))
-                                        {
-                                            Console.WriteLine("Correo inválido.");
-                                            break;
-                                        }
+                            Console.Write("Nivel de permiso (1,2,3): ");
+                            int nivelPermiso = int.Parse(Console.ReadLine());
 
-                                        Console.Write("Contraseña: ");
-                                        string contrasena = Console.ReadLine();
-                                        if (contrasena.Length < 8 || !contrasena.Any(char.IsUpper))
-                                        {
-                                            Console.WriteLine("Contraseña insegura. Debe tener al menos 8 caracteres y una mayúscula.");
-                                            break;
-                                        }
+                            Empleado nuevoEmpleado = new Empleado
+                            {
+                                DNI = dni,
+                                Nombre = nombre,
+                                Edad = edad,
+                                Correo = correo,
+                                Contrasena = contrasena,
+                                NivelPermiso = nivelPermiso
+                            };
 
-                                        Console.Write("Nivel de permiso (1,2,3...): ");
-                                        int nivelPermiso = int.Parse(Console.ReadLine());
+                            repo.Insertar(nuevoEmpleado);
+                            empleados.Add(nuevoEmpleado);
 
-                                        Empleado nuevoEmpleado = new Empleado(id, nombre, edad, correo, contrasena, nivelPermiso);
-                                        empleados.Add(nuevoEmpleado);
-                                        Console.WriteLine($"Empleado {nombre} registrado correctamente.");
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine($"Error: {ex.Message}");
-                                    }
-                                    break;
+                            Console.WriteLine($"Empleado {nombre} registrado correctamente en la base de datos");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error al registrar empleado: {ex.Message}");
+                        }
+                        break;
 
-                                case "2":
-                                    Console.WriteLine("\n=== Empleados Registrados ===");
-                                    foreach (var emp in empleados)
-                                    {
-                                        emp.MostrarDatos();
-                                        Console.WriteLine("----");
-                                    }
-                                    break;
-
-                                case "3":
-                                    Console.Write("Ingrese el ID del empleado a validar: ");
-                                    string idValidar = Console.ReadLine();
-                                    Empleado empVal = empleados.Find(e => e.Id == idValidar);
-                                    if (empVal != null)
-                                    {
-                                        if (empVal.ValidarEdad())
-                                            Console.WriteLine($"{empVal.Nombre} puede acceder.");
-                                        else
-                                            Console.WriteLine($"{empVal.Nombre} NO puede acceder.");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Empleado no encontrado.");
-                                    }
-                                    break;
-
-                                case "4":
-                                    salirSafeEntry = true;
-                                    break;
-
-                                default:
-                                    Console.WriteLine("Opción no válida.");
-                                    break;
+                    case "2":
+                        Console.WriteLine("\n=== Empleados Registrados ===");
+                        if (empleados.Count == 0)
+                        {
+                            Console.WriteLine("No hay empleados registrados aún.");
+                        }
+                        else
+                        {
+                            foreach (var emp in empleados)
+                            {
+                                emp.MostrarDatos();
+                                Console.WriteLine("----");
                             }
                         }
                         break;
-                        default:
-                    Console.WriteLine("Opción no válida.");
-                    break;
+
+                    case "3":
+                        Console.Write("Ingrese el DNI del empleado a validar: ");
+                        string dniValidar = Console.ReadLine();
+
+                        Empleado empVal = empleados.Find(e => e.DNI == dniValidar);
+
+                        if (empVal != null)
+                        {
+                            if (empVal.ValidarEdad())
+                                Console.WriteLine($"{empVal.Nombre} puede acceder.");
+                            else
+                                Console.WriteLine($"{empVal.Nombre} NO puede acceder.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Empleado no encontrado.");
+                        }
+                        break;
+
+                    case "4":
+                        salirSafeEntry = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
+                }
             }
+            break;
+    
+            case "6": 
+            Console.WriteLine("Saliendo del sistema...");
+            return;
+            }
+            
             Console.WriteLine("----");
             }
         }

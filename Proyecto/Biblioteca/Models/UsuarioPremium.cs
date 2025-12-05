@@ -18,20 +18,4 @@ public class UsuarioPremium : UsuarioBase
                 multimedia.MostrarDemo();
         }
     }
-
-    public void PrestarMaterial(MaterialDigital material)
-    {
-        if (material is IPrestable prestable)
-            prestable.Prestar(this);
-        else
-            throw new InvalidOperationException("El material no es prestable.");
-    }
-
-    public void DevolverMaterial(MaterialDigital material)
-    {
-        if (material is IPrestable prestable)
-            prestable.Devolver();
-        else
-            throw new InvalidOperationException("El material no es prestable.");
-    }
 }

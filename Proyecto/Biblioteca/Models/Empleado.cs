@@ -2,17 +2,21 @@
 
     public class Empleado
     {
-        public string Id { get; private set; } // uuid o dni
-        public string Nombre { get; private set; }
-        public int Edad { get; private set; }
-        public string Correo { get; private set; }
-        public string Contrasena { get; private set; } // almacenar hash
-        public int NivelPermiso { get; private set; } // 1,2,3...
+        public int Id { get; private set; } 
+        public string DNI { get; set; }
+        public string Nombre { get;  set; }
+        public int Edad { get;  set; }
+        public string Correo { get;  set; }
+        public string Contrasena { get;  set; } // almacenar hash
+        public int NivelPermiso { get;  set; } // 1,2,3...
 
-        public Empleado(string id, string nombre, int edad, string correo, string contrasena, int nivelPermiso)
+        public Empleado() { }
+        
+        public Empleado(int id, string dni ,string nombre, int edad, string correo, string contrasena, int nivelPermiso)
         {
             
-            Id = id;
+            Id = id ;
+            DNI = dni;
             Nombre = nombre;
             Edad = edad;
             Correo = correo;
@@ -21,7 +25,7 @@
         }
            public void MostrarDatos()
         {
-            Console.WriteLine($"ID: {Id}\nNombre: {Nombre}\nEdad: {Edad}\nCorreo: {Correo}\nNivelPermiso: {NivelPermiso}");
+            Console.WriteLine($"\nDNI: {DNI}\nNombre: {Nombre}\nEdad: {Edad}\nCorreo: {Correo}\nNivelPermiso: {NivelPermiso}");
         }
         
         public bool ValidarEdad()
