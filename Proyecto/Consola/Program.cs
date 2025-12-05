@@ -1,4 +1,4 @@
-﻿using Biblioteca.Enums;
+﻿﻿using Biblioteca.Enums;
 using Biblioteca.Interfaces;
 using Biblioteca.Interfaces.Reports;
 using Biblioteca.Models;
@@ -19,8 +19,8 @@ class Program
             Console.WriteLine("2. Explorar Catálogo como Bibliotecario");
             Console.WriteLine("3. Explorar Catálogo como Usuario Premium");
             Console.WriteLine("4. Explorar Catálogo como Visitante");
-            Console.WriteLine("5. Salir");
-            Console.WriteLine("6. SAFE ENTRY - Gestión de Empleados");
+            Console.WriteLine("5. SAFE ENTRY - Gestión de Empleados");            
+            Console.WriteLine("6. Salir");
             Console.Write("Seleccione una opción: ");
 
             string opcion = Console.ReadLine();
@@ -122,26 +122,58 @@ class Program
                         }
                         else if (accionBiblio == "3")
                         {
-                            Console.WriteLine("\n=== Gestionar Préstamo Vencido ===");
-                            Console.Write("Título del material: ");
-                            string tituloPrestamo = Console.ReadLine();
-                            MaterialDigital materialPrestamo = catalogo.Find(m => m.Titulo == tituloPrestamo);
-                            if (materialPrestamo != null)
+                            Console.WriteLine("\n=== Gestionar Préstamo Vencido / Registrar Devolución ===");
+                            try
                             {
-                                Prestamo prestamo = prestamos.Find(p => p.Material == materialPrestamo && p.Estado == EstadoPrestamo.Activo);
-                                if (prestamo != null)
+                                Console.Write("Ingrese el nombre del usuario: ");
+                                string nombreUsuario = Console.ReadLine();
+                                Console.Write("Ingrese el título del material: ");
+                                string tituloMaterial = Console.ReadLine();
+
+                                UsuarioBase usuario = usuarios.Find(u => u.Nombre == nombreUsuario);
+                                if (usuario == null)
                                 {
-                                    bibliotecario.GestionarPrestamoVencido(prestamo.Usuario, materialPrestamo, prestamos);
+                                    Console.WriteLine("Usuario no encontrado.");
+                                    break;
                                 }
-                                else
+
+                                MaterialDigital materialPrestamo = catalogo.Find(m => m.Titulo == tituloMaterial);
+                                if (materialPrestamo == null)
                                 {
-                                    Console.WriteLine("No hay préstamos activos para este material.");
+                                    Console.WriteLine("Material no encontrado en el catálogo.");
+                                    break;
+                                }
+                                Prestamo prestamo = prestamos.Find(p =>
+                                    p.Usuario.Nombre.Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase)
+                                    && p.Material.Id == materialPrestamo.Id
+                                    && p.Estado == EstadoPrestamo.Activo);
+
+                                if (prestamo == null)
+                                {
+                                    Console.WriteLine("No se encontró un préstamo activo para este usuario y material.");
+                                    break;
+                                }
+
+                                Console.Write("Ingrese fecha de devolución (YYYY-MM-DD): ");
+                                string fechaInput = Console.ReadLine();
+                                try
+                                {
+                                    prestamo.ActualizarFechaDevolucionReal(fechaInput);
+
+                                    // Mostrar resultado
+                                    Console.WriteLine($"\nResultado de la devolución para {prestamo.Usuario.Nombre} - {prestamo.Material.Titulo}:");
+                                    prestamo.MostrarDatos();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Error al registrar la devolución: {ex.Message}");
                                 }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                Console.WriteLine("Material no encontrado.");
+                                Console.WriteLine($"Error: {ex.Message}");
                             }
+                            // --------------------------------------------------------------------------
                         }
                         else if (accionBiblio == "4")
                         {
@@ -205,109 +237,109 @@ class Program
                 case "5":
                     Console.WriteLine("Saliendo del sistema...");
                     return;
-                    
-                      case "6":
-                        bool salirSafeEntry = false;
 
-                        while (!salirSafeEntry)
+                case "6":
+                    bool salirSafeEntry = false;
+
+                    while (!salirSafeEntry)
+                    {
+                        Console.WriteLine("\n=== SAFE ENTRY ===");
+                        Console.WriteLine("1. Registrar nuevo empleado");
+                        Console.WriteLine("2. Mostrar empleados registrados");
+                        Console.WriteLine("3. Validar acceso de un empleado");
+                        Console.WriteLine("4. Salir de SAFE ENTRY");
+                        Console.Write("Seleccione una opción: ");
+                        string opcionSafe = Console.ReadLine();
+
+                        switch (opcionSafe)
                         {
-                            Console.WriteLine("\n=== SAFE ENTRY ===");
-                            Console.WriteLine("1. Registrar nuevo empleado");
-                            Console.WriteLine("2. Mostrar empleados registrados");
-                            Console.WriteLine("3. Validar acceso de un empleado");
-                            Console.WriteLine("4. Salir de SAFE ENTRY");
-                            Console.Write("Seleccione una opción: ");
-                            string opcionSafe = Console.ReadLine();
+                            case "1":
+                                try
+                                {
+                                    Console.Write("ID del empleado (DNI o UUID): ");
+                                    string id = Console.ReadLine();
 
-                            switch (opcionSafe)
-                            {
-                                case "1":
-                                    try
+                                    Console.Write("Nombre: ");
+                                    string nombre = Console.ReadLine();
+
+                                    Console.Write("Edad: ");
+                                    int edad = int.Parse(Console.ReadLine());
+                                    if (edad < 18)
                                     {
-                                        Console.Write("ID del empleado (DNI o UUID): ");
-                                        string id = Console.ReadLine();
-
-                                        Console.Write("Nombre: ");
-                                        string nombre = Console.ReadLine();
-
-                                        Console.Write("Edad: ");
-                                        int edad = int.Parse(Console.ReadLine());
-                                        if (edad < 18)
-                                        {
-                                            Console.WriteLine("No se puede registrar a menores de 18 años.");
-                                            break;
-                                        }
-
-                                        Console.Write("Correo electrónico: ");
-                                        string correo = Console.ReadLine();
-                                        if (!correo.Contains("@") || !correo.Contains("."))
-                                        {
-                                            Console.WriteLine("Correo inválido.");
-                                            break;
-                                        }
-
-                                        Console.Write("Contraseña: ");
-                                        string contrasena = Console.ReadLine();
-                                        if (contrasena.Length < 8 || !contrasena.Any(char.IsUpper))
-                                        {
-                                            Console.WriteLine("Contraseña insegura. Debe tener al menos 8 caracteres y una mayúscula.");
-                                            break;
-                                        }
-
-                                        Console.Write("Nivel de permiso (1,2,3...): ");
-                                        int nivelPermiso = int.Parse(Console.ReadLine());
-
-                                        Empleado nuevoEmpleado = new Empleado(id, nombre, edad, correo, contrasena, nivelPermiso);
-                                        empleados.Add(nuevoEmpleado);
-                                        Console.WriteLine($"Empleado {nombre} registrado correctamente.");
+                                        Console.WriteLine("No se puede registrar a menores de 18 años.");
+                                        break;
                                     }
-                                    catch (Exception ex)
+
+                                    Console.Write("Correo electrónico: ");
+                                    string correo = Console.ReadLine();
+                                    if (!correo.Contains("@") || !correo.Contains("."))
                                     {
-                                        Console.WriteLine($"Error: {ex.Message}");
+                                        Console.WriteLine("Correo inválido.");
+                                        break;
                                     }
-                                    break;
 
-                                case "2":
-                                    Console.WriteLine("\n=== Empleados Registrados ===");
-                                    foreach (var emp in empleados)
+                                    Console.Write("Contraseña: ");
+                                    string contrasena = Console.ReadLine();
+                                    if (contrasena.Length < 8 || !contrasena.Any(char.IsUpper))
                                     {
-                                        emp.MostrarDatos();
-                                        Console.WriteLine("----");
+                                        Console.WriteLine("Contraseña insegura. Debe tener al menos 8 caracteres y una mayúscula.");
+                                        break;
                                     }
-                                    break;
 
-                                case "3":
-                                    Console.Write("Ingrese el ID del empleado a validar: ");
-                                    string idValidar = Console.ReadLine();
-                                    Empleado empVal = empleados.Find(e => e.Id == idValidar);
-                                    if (empVal != null)
-                                    {
-                                        if (empVal.ValidarEdad())
-                                            Console.WriteLine($"{empVal.Nombre} puede acceder.");
-                                        else
-                                            Console.WriteLine($"{empVal.Nombre} NO puede acceder.");
-                                    }
+                                    Console.Write("Nivel de permiso (1,2,3...): ");
+                                    int nivelPermiso = int.Parse(Console.ReadLine());
+
+                                    Empleado nuevoEmpleado = new Empleado(id, nombre, edad, correo, contrasena, nivelPermiso);
+                                    empleados.Add(nuevoEmpleado);
+                                    Console.WriteLine($"Empleado {nombre} registrado correctamente.");
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Error: {ex.Message}");
+                                }
+                                break;
+
+                            case "2":
+                                Console.WriteLine("\n=== Empleados Registrados ===");
+                                foreach (var emp in empleados)
+                                {
+                                    emp.MostrarDatos();
+                                    Console.WriteLine("----");
+                                }
+                                break;
+
+                            case "3":
+                                Console.Write("Ingrese el ID del empleado a validar: ");
+                                string idValidar = Console.ReadLine();
+                                Empleado empVal = empleados.Find(e => e.Id == idValidar);
+                                if (empVal != null)
+                                {
+                                    if (empVal.ValidarEdad())
+                                        Console.WriteLine($"{empVal.Nombre} puede acceder.");
                                     else
-                                    {
-                                        Console.WriteLine("Empleado no encontrado.");
-                                    }
-                                    break;
+                                        Console.WriteLine($"{empVal.Nombre} NO puede acceder.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Empleado no encontrado.");
+                                }
+                                break;
 
-                                case "4":
-                                    salirSafeEntry = true;
-                                    break;
+                            case "4":
+                                salirSafeEntry = true;
+                                break;
 
-                                default:
-                                    Console.WriteLine("Opción no válida.");
-                                    break;
-                            }
+                            default:
+                                Console.WriteLine("Opción no válida.");
+                                break;
                         }
-                        break;
-                        default:
+                    }
+                    break;
+                default:
                     Console.WriteLine("Opción no válida.");
                     break;
             }
             Console.WriteLine("----");
-            }
         }
-  }
+    }
+}
