@@ -1,6 +1,6 @@
 
 DELIMITER $$
-CREATE PROCEDURE SP_InsertEmpleadoConDNI(
+CREATE PROCEDURE SP_InsertEmpleado(
     IN pDNI VARCHAR(15),
     IN pNombre VARCHAR(100),
     IN pEdad INT,
@@ -38,4 +38,3 @@ BEGIN
     FROM Empleado
     WHERE IdEmpleado = pEmpleadoId;
 END $$
-

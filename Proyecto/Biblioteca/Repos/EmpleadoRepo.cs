@@ -11,7 +11,7 @@ namespace Biblioteca.Repos
 
         public void Insertar(Empleado e)
         {
-            using var conn = _conexion.CrearConexion();
+            var conn = _conexion.CrearConexion();
             conn.Open();
 
             using var cmd = new MySqlCommand("SP_InsertEmpleado", conn);
